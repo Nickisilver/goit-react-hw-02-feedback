@@ -1,16 +1,48 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+import React from 'react';
+import { Component } from 'react';
+import { Section } from './Section/Section';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Statistics } from './Statistics/Statistics';
+export class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const { good } = this.state;
+    const total = this.countTotalFeedback();
+    const positivePersent = Math.round((good / total) * 100);
+    return total ? positivePersent : 0;
+  };
+
+  onBtnClick = option => {this.setState(prevState => ({ [option]: prevState[option] + 1 }))};
+c
+  render() {
+    const { good, neutral, bad } = this.state;
+const total = this.countTotalFeedback();
+const positivePercentage = this.countPositiveFeedbackPercentage()
+
+    return (
+      <div className="container">
+        <Section title="Please leave feedback">
+          <FeedbackOptions 
+          options = {Object.keys(this.state)}
+         onClick={this.onBtnClick}
+          />
+        </Section>
+        <Section title="Statistics">
+<Statistics 
+  good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage}
+/>
+        </Section>
+      </div>
+    );
+  }
+}
