@@ -1,0 +1,14 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.title {
+  font-family: sans-serif;
+  font-size: 48px;
+  margin-bottom: 30px;
+  color: skyblue;
+  text-shadow: 5px 5px 4px rgba(0,0,0,0.6);
+}

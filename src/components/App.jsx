@@ -3,6 +3,8 @@ import { Component } from 'react';
 import { Section } from './Section/Section';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
+import { Notification } from './Notification/Notification';
+import css from './App.module.css'
 export class App extends Component {
   state = {
     good: 0,
@@ -22,25 +24,33 @@ export class App extends Component {
     return total ? positivePersent : 0;
   };
 
-  onBtnClick = option => {this.setState(prevState => ({ [option]: prevState[option] + 1 }))};
-c
+  onBtnClick = option => {
+    this.setState(prevState => ({ [option]: prevState[option] + 1 }));
+  };
+  c;
   render() {
     const { good, neutral, bad } = this.state;
-const total = this.countTotalFeedback();
-const positivePercentage = this.countPositiveFeedbackPercentage()
+    const total = this.countTotalFeedback();
+    const positivePercentage = this.countPositiveFeedbackPercentage();
 
     return (
-      <div className="container">
+      <div className={css.container}
+      >
         <Section title="Please leave feedback">
-          <FeedbackOptions 
-          options = {Object.keys(this.state)}
-         onClick={this.onBtnClick}
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onClick={this.onBtnClick}
           />
         </Section>
         <Section title="Statistics">
-<Statistics 
-  good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage}
-/>
+        {total ?  <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positivePercentage={positivePercentage}
+          /> : <Notification  message="There is no feedback"/>}
+         
         </Section>
       </div>
     );

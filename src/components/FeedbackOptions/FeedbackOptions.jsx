@@ -1,10 +1,10 @@
-
-
+import PropTypes from 'prop-types';
+import css from './FeedbackOptions.module.css'
 export const FeedbackOptions = ({options, onClick}) => {
   return (
-    <div className="btnWrapper">
+    <div className={css.btnWrapper}>
      {options.map(option =>(
-      <button 
+      <button className={css.btn}
       key = {option}
       name = {option}
       type="button"
@@ -15,4 +15,9 @@ export const FeedbackOptions = ({options, onClick}) => {
      ))}
     </div>
   )
+}
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onClick: PropTypes.func.isRequired,
 }

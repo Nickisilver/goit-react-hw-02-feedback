@@ -1,22 +1,10 @@
-.statisticWrapper {
-  display: flex;
-  gap: 20px;
+.message {
   font-size: 22px;
   text-transform: capitalize;
   color: skyblue;
   text-shadow: 5px 5px 4px rgba(0,0,0,0.6);
   font-family: sans-serif;
-  max-width: 100%;
-}
-
-.reaction {
   background-color:slateblue;
   padding: 7px;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
 }
-
